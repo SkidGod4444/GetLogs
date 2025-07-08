@@ -1,13 +1,10 @@
 import type { DiscordConfig } from "../types";
-import { Embed, WebhookClient } from "discord.js";
 
 export async function sendDiscordLog({ webhookUrl, embed, content }: DiscordConfig) {
   try {
-    const logger = new WebhookClient({ url: webhookUrl });
-
     const payload: {
       content?: string;
-      embeds?: Embed[];
+      embeds?: any[];
     } = {
       content: content ?? "",
     };
@@ -16,7 +13,13 @@ export async function sendDiscordLog({ webhookUrl, embed, content }: DiscordConf
       payload.embeds = [embed];
     }
 
-    await logger.send(payload);
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
   } catch (error) {
     console.error("Failed to send Discord log:", error);
   }

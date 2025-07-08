@@ -1,0 +1,35 @@
+{
+  "name": "getlogs-sdk",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": ["discord", "discord-logger", "slack-logger", "getlogs", "logger", "webhook", "webhook-logger"],
+  "author": "Saidev Dhal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SkidGod4444/GetLogs"
+  },
+  "bugs": {
+    "url": "https://github.com/SkidGod4444/GetLogs/issues"
+  },
+  "homepage": "https://github.com/SkidGod4444/GetLogs#readme",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "pre-publish": "bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "tsup": "^8.5.0"
+  }
+}
