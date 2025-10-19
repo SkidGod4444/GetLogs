@@ -1,32 +1,4 @@
-import type {DiscordEmbedBuilder } from "./builder";
-
-export type Provider = "discord" | "slack";
-
-export interface DiscordConfig {
-  webhookUrl: string;
-  content?: string;
-  embed?: DiscordEmbedBuilder;
-}
-
-export interface GetLogsOptions {
-  provider?: Provider;
-  discord?: DiscordConfig;
-  slack?: SlackConfig;
-}
-
-export interface SlackAttachment {
-    pretext?: string;
-    color?: string;
-    footer_icon?: string;
-    footer?: string;
-    ts?: number;
-  };
-  
-export interface SlackConfig {
-    webhookUrl: string;
-    username?: string;
-    block?: SlackBlock;
-  }
+export type Provider = "discord" | "slack" | "telegram";
 
 export interface DiscordEmbed {
   color?: number;
@@ -50,7 +22,43 @@ export interface DiscordEmbed {
     text?: string;
     iconURL?: string;
   };
-};
+}
+
+export interface DiscordConfig {
+  webhookUrl: string;
+  content?: string;
+  embed?: DiscordEmbed;
+}
+
+export interface SlackAttachment {
+  pretext?: string;
+  color?: string;
+  footer_icon?: string;
+  footer?: string;
+  ts?: number;
+}
+
+export interface SlackConfig {
+  webhookUrl: string;
+  username?: string;
+  blocks?: SlackBlock[];
+}
+
+export interface TelegramConfig {
+  botToken: string;
+  chatId: string;
+  message?: string;
+  parseMode?: "HTML" | "Markdown" | "MarkdownV2";
+  disableWebPagePreview?: boolean;
+  disableNotification?: boolean;
+}
+
+export interface GetLogsOptions {
+  provider?: Provider;
+  discord?: DiscordConfig;
+  slack?: SlackConfig;
+  telegram?: TelegramConfig;
+}
 
 type SlackTextObject = {
   type: "plain_text" | "mrkdwn";
